@@ -24,7 +24,7 @@ func main() {
 
 		chr := rune(text[0])
 
-		if chr == 'I' || chr == 'V' || chr == 'X' {
+		if chr == 'I' || chr == 'i' || chr == 'V' || chr == 'v' || chr == 'X' || chr == 'x' || chr == 'Х' || chr == 'х' {
 			fmt.Println(CalculateRome(text))
 		} else if int(chr-'0') <= 9 && int(chr-'0') >= 0 {
 			fmt.Println(CalculateArb(text))
@@ -98,16 +98,16 @@ func CalculateRome(str string) string {
 	var _chngSide bool = false
 
 	for index, value := range str {
-		if value == 'I' {
+		if value == 'I' || value == 'i' {
 			_countI++
 			if _countI > 3 {
 				err := errors.New(fmt.Sprint("incorrect number, number of index: ", index))
 				panic(err)
 			}
 			_tmpInt++
-		} else if value == 'V' {
+		} else if value == 'V' || value == 'v' {
 			_tmpInt = 5 - _countI
-		} else if value == 'X' {
+		} else if value == 'X' || value == 'x' || value == 'Х' || value == 'х' {
 			_tmpInt = 10 - _countI
 		} else if value == '+' || value == '-' || value == '/' || value == '*' {
 			if _chngSide == true {
@@ -148,7 +148,17 @@ func CalculateRome(str string) string {
 		panic(err)
 	}
 	var ansvr string = ""
-	for i := 0; i < ansvrInt/10; i++ {
+	counter := ansvrInt / 10
+	if counter >= 5 {
+		ansvr = "L"
+
+		if counter >= 10 {
+			ansvr = "C"
+			counter -= 5
+		}
+		counter -= 5
+	}
+	for i := 0; i < counter; i++ {
 		ansvr += "X"
 	}
 
