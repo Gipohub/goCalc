@@ -24,7 +24,7 @@ func main() {
 
 		chr := rune(text[0])
 
-		if chr == 'I' || chr == 'i' || chr == 'V' || chr == 'v' || chr == 'X' || chr == 'x' || chr == 'Х' || chr == 'х' {
+		if chr == 'I' || chr == 'i' || chr == 'V' || chr == 'v' || chr == 'X' || chr == 'x' {
 			fmt.Println(CalculateRome(text))
 		} else if int(chr-'0') <= 9 && int(chr-'0') >= 0 {
 			fmt.Println(CalculateArb(text))
@@ -107,7 +107,7 @@ func CalculateRome(str string) string {
 			_tmpInt++
 		} else if value == 'V' || value == 'v' {
 			_tmpInt = 5 - _countI
-		} else if value == 'X' || value == 'x' || value == 'Х' || value == 'х' {
+		} else if value == 'X' || value == 'x' {
 			_tmpInt = 10 - _countI
 		} else if value == '+' || value == '-' || value == '/' || value == '*' {
 			if _chngSide == true {
